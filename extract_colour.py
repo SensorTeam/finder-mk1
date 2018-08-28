@@ -1,3 +1,6 @@
+# run with
+# `python extract_colour.py -i path-to-jpg`
+
 import rawpy
 import cv2
 import numpy as np
@@ -44,7 +47,7 @@ conts = find_eye(thresh)
 raw_path = 'eyes.cr2'
 raw_path = raw_filename
 
-
+# stores final colour list
 col_list = []
 col_list_jpg = []
 
