@@ -3,3 +3,5 @@ ignore/
 __pycache__
 testing/
 *.pyc
+circled.jpg
+thresh.jpg
