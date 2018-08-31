@@ -1,3 +1,8 @@
+import cv2
+
+#Input: Contour list (cnts) and thresholded image (image)
+def show_contours(cnts, image)
+
 # loop over the contours
 for (i, c) in enumerate(cnts):
 	# draw the bright spot on the image
@@ -12,6 +17,12 @@ for (i, c) in enumerate(cnts):
 image = cv2.resize(image, (954, 634))
 cv2.imshow("Image", image)
 cv2.waitKey(0)
+
+def show_thresh():
+	# show the output image
+	thresh = cv2.resize(thresh, (954, 634))
+	cv2.imshow("Thresh", thresh)
+	cv2.waitKey(0)
 
 def circularity(contours):
 # find contours of correct area
