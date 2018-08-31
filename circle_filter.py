@@ -19,7 +19,7 @@ def circle_filter(contours):
 		circularity = area_contour / area_circle
 
 		#Only add contours which satisfy the circularity requirement to the new contour list
-		if 0.9 < circularity < 1.0:
+		if 0.75 < circularity < 1.0:
 			contours_new.append(con)
 
 	return contours_new

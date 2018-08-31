@@ -43,7 +43,7 @@ def pair_eyes(contours):
 			#must be less than 30 degrees, the distance between circles must not exceed 10 times 
 			#the circles averaged radius, and the ratio of radii must be less than 0.8
 			if -30 < angle < 30:
-				if norm < 10 * avg_radius:
+				if norm < 1 * avg_radius:
 					if 0.8 < radius_ratio < (1 / 0.8):
 						#If they are a pair, add them as a 2-tuple
 						contour_list.append((contours[i], contours[j]))
