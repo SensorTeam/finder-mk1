@@ -1,24 +1,25 @@
 import cv2
+from config import *
 
 #Input: Contour list (cnts) and thresholded image (image)
-def show_contours(cnts, image)
+def show_contours(cnts, image):
 
 # loop over the contours
-for (i, c) in enumerate(cnts):
-	# draw the bright spot on the image
-	(x, y, w, h) = cv2.boundingRect(c)
-	((cX, cY), radius) = cv2.minEnclosingCircle(c)
-	cv2.circle(image, (int(cX), int(cY)), int(radius),
-		(0, 0, 255), 3)
-	cv2.putText(image, "#{}".format(i + 1), (x, y - 15),
-		cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 4)
+	for (i, c) in enumerate(cnts):
+		# draw the bright spot on the image
+		(x, y, w, h) = cv2.boundingRect(c)
+		((cX, cY), radius) = cv2.minEnclosingCircle(c)
+		cv2.circle(image, (int(cX), int(cY)), int(radius),
+			(0, 0, 255), 3)
+		cv2.putText(image, "#{}".format(i), (x, y - 15),
+			cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 4)
 
-# show the output image
-image = cv2.resize(image, (954, 634))
-cv2.imshow("Image", image)
-cv2.waitKey(0)
+	# show the output image
+	image = cv2.resize(image, (954, 634))
+	cv2.imshow("Image", image)
+	cv2.waitKey(0)
 
-def show_thresh():
+def show_thresh(thresh):
 	# show the output image
 	thresh = cv2.resize(thresh, (954, 634))
 	cv2.imshow("Thresh", thresh)

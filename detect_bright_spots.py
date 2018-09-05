@@ -3,6 +3,7 @@ from skimage import measure
 import numpy as np
 import imutils
 import cv2
+from config import *
 
 #Input: JPG image
 #Outputs: Contours corresponding to bright patches in the JPG image, thresholded image
@@ -14,7 +15,7 @@ def detect_bright_spots(image):
 
 	# threshold the image to reveal light regions in the
 	# blurred image
-	thresh = cv2.threshold(blurred, 200, 255, cv2.THRESH_BINARY)[1]
+	thresh = cv2.threshold(blurred, MIN_THRESHOLD, MAX_THRESHOLD, cv2.THRESH_BINARY)[1]
 
 	# perform a series of erosions and dilations to remove
 	# any small blobs of noise from the thresholded image
@@ -41,7 +42,7 @@ def detect_bright_spots(image):
 
 		# if the number of pixels in the component is sufficiently
 		# large, then add it to our mask of "large blobs"
-		if numPixels > 300:
+		if numPixels > MIN_NUM_PIXELS:
 			mask = cv2.add(mask, labelMask)
 
 	# find the contours in the mask, then sort them from left to

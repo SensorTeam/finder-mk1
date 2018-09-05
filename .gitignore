@@ -1,7 +1,6 @@
 .env
 venv/
-
+images/
 .DS_STORE
-
 *.pyc
 __pycache__/
