@@ -1,12 +1,13 @@
 
-from .raw_to_jpg import *
-from .detect_bright_spots import *
-from .circle_filter import *
-from .pair_eyes import *
-from .contours_to_pixels import *
-from .get_raw_colour import *
-from .diagnostic_tool import *
-from .config import *
+from raw_to_jpg import *
+from detect_bright_spots import *
+from circle_filter import *
+from pair_eyes import *
+from contours_to_pixels import *
+from get_raw_colour import *
+from get_jpg_colour import *
+from diagnostic_tool import *
+from config import *
 
 
 def extract_data_from(path, label):
@@ -27,7 +28,7 @@ def extract_data_from(path, label):
 	if coords_list is not None:
 		# get colour from jpg or raw
 		if COLOUR_SOURCE == "JPG":
-			jpg_camera = path[:-4]+".JPG"
+			jpg_camera = path + ".JPG"
 			colours_list = get_jpg_colour(coords_list, jpg_camera)
 		elif COLOUR_SOURCE == "RAW":
 			colours_list = get_raw_colour(coords_list, path)
@@ -44,4 +45,4 @@ def extract_data_from(path, label):
 	else:
 		return []
 
-extract_data_from('IMG_5652', None)
+extract_data_from('images\\IMG_5652', None)

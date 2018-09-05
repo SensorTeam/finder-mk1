@@ -5,8 +5,7 @@ def get_jpg_colour(coords_list, path):
 	image = cv2.imread(path)
 
 	colours_list = []
-	r, g, b = 0, 0, 0
-	num_pixels = 0, 0, 0, 0
+	r, g, b, num_pixels = 0, 0, 0, 0
 
 	for coords in coords_list:
 		for coord in coords:
