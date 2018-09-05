@@ -1,4 +1,5 @@
 import rawpy
+from config import *
 
 def get_raw_colour(coords_list, path):
 	print("Extracting colour information from the raw file...")
