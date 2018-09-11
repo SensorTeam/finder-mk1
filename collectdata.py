@@ -1,13 +1,6 @@
 # run in terminal using:
 # for f in path/to/folder/*.JPG; do python3 collectdata.py -i $f -l label; done
 
-# for f in cows_eyes_test/*.JPG; 
-# do python main.py -i $f -l None;
-# done
-
-# python main.py -i path/to/file/ -l None
-
-
 import argparse
 import csv
 from main import *
