@@ -18,13 +18,13 @@ label = args["label"]
 
 r_results, j_results = extract_data_from(path, label)
 
-# f = open("extracted_data_raw.csv", 'a')
-# writer = csv.writer(f)
-# for entry in r_results:
-# 	writer.writerow(entry)
-# f.close()
+f = open("sheep_data_raw.csv", 'a')
+writer = csv.writer(f)
+for entry in r_results:
+	writer.writerow(entry)
+f.close()
 
-f2 = open("extracted_data_jpg.csv", 'a')
+f2 = open("sheep_data_jpg.csv", 'a')
 writer = csv.writer(f2)
 for entry in j_results:
 	writer.writerow(entry)

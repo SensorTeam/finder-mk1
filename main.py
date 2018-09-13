@@ -13,12 +13,13 @@ from config import *
 def extract_data_from(path, label):
 	jpg = raw_to_jpg(path)
 	cnts, thresh = detect_bright_spots(jpg)
+	
 	contours = circle_filter(cnts)
 
 	contour_indices = pair_eyes(contours)
 	
-	# show_thresh(thresh)
-	# show_contours(contours, jpg)
+	show_thresh(thresh)
+	show_contours(contours, jpg)
 	
 	# print('{} ANIMAL(S) FOUND'.format(len(contour_indices)))
 	
