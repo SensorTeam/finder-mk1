@@ -4,3 +4,5 @@ images/
 .DS_STORE
 *.pyc
 __pycache__/
+Cow_eyes_field_test/
+diamond.png
