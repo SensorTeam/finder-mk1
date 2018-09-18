@@ -38,7 +38,8 @@ def pair_eyes(contours):
 				radius2 = radii[j]
 
 				I = cv2.matchShapes(contours[i], contours[j], 1, 0)
-
+				print(i,j)
+				print(I)
 				#Find the distance between the circles' centres,
 				#the angle of elavation/depression,
 				#the averaged radius of the two circles,
@@ -54,7 +55,7 @@ def pair_eyes(contours):
 				if -MAX_ANGLE < angle < MAX_ANGLE:
 					if norm < AVG_RADIUS_MULTIPLIER * avg_radius:
 						# if MIN_RADIUS_RATIO < radius_ratio < (1 / MIN_RADIUS_RATIO):
-						if I < 0.15:
+						if I < HU_MOMENT_DISTANCE:
 							#If they are a pair, add them as a 2-tuple
 							contour_indices.append((i, j))
 							
