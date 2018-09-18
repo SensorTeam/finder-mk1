@@ -10,5 +10,5 @@ def raw_to_jpg(path):
 		#Parameters can be added to postprocess() to change brightness
 		#and gamma correction
 		jpg = raw.postprocess(bright = 0.1)
-		# imageio.imwrite(path + '_pp.jpg', jpg)
+		imageio.imwrite(path + '_pp.jpg', jpg)
 		return jpg
