@@ -39,7 +39,9 @@ def circularity(contours):
 def show_pairs(cnts, image, contour_indices):
 
 	# loop over the contours
+	colours = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (128, 128, 0), (128, 0, 128), (0, 128, 128)]
 	for (i, p) in enumerate(contour_indices):
+		colour = colours[i]
 		for index in p:
 			if index == None:
 				break
@@ -48,9 +50,9 @@ def show_pairs(cnts, image, contour_indices):
 			(x, y, w, h) = cv2.boundingRect(c)
 			((cX, cY), radius) = cv2.minEnclosingCircle(c)
 			cv2.circle(image, (int(cX), int(cY)), int(radius),
-				(0, 0, 255), 3)
-			cv2.putText(image, "#{}".format(i), (x, y - 15),
-				cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 4)
+				colour, 3)
+		cv2.putText(image, "#{}".format(i), (x, y - 15),
+			cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 4)
 
 	# show the output image
 	image = cv2.resize(image, (954, 634))
