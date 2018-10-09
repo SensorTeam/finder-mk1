@@ -20,6 +20,7 @@ def pair_eyes(contours):
 		centres.append((x, y))
 		radii.append(radius)
 	
+	checklist = [0]*len(centres)		# for checking double ups
 
 	# If there is only one signal, add it by itself
 	if len(centres) == 1:
@@ -27,7 +28,6 @@ def pair_eyes(contours):
 	elif len(centres) == 0:
 		pass
 	else:
-		checklist = [0]*len(centres)		# for checking double ups
 		#Compare each circle to each other circle				
 		for i in range(len(centres)):
 			x1 = centres[i][0]
