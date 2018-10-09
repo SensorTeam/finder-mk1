@@ -47,7 +47,7 @@ def pair_eyes(contours):
 				#the averaged radius of the two circles,
 				# and the ratio of the circles' radii
 				norm = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
-				angle = math.degrees(math.atan((y2 - y1) / (x2 - x1)))
+				angle = math.degrees(math.atan((y2 - y1) / (x2 - x1))) if x2 != x2 else 0
 				avg_radius = (radius1 + radius2) / 2
 				radius_ratio = radius2 / radius1
 
