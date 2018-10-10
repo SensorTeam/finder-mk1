@@ -55,7 +55,10 @@ def pair_eyes(contours):
 				#must be less than 30 degrees, the distance between circles must not exceed 10 times 
 				#the circles averaged radius, and the ratio of radii must be less than 0.8
 				# If they are a pair, add them as a 2-tuple
-				if -MAX_ANGLE < angle < MAX_ANGLE and norm < AVG_RADIUS_MULTIPLIER * avg_radius and I < HU_MOMENT_DISTANCE:
+				if -MAX_ANGLE < angle < MAX_ANGLE \
+				and norm < AVG_RADIUS_MULTIPLIER * avg_radius \
+				and I < HU_MOMENT_DISTANCE\
+				and radius_ratio > MIN_RADIUS_RATIO:
 					contour_indices.append((i, j))
 					checklist[i] += 1
 					checklist[j] += 1
