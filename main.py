@@ -8,18 +8,21 @@ from get_raw_colour import *
 from get_jpg_colour import *
 from diagnostic_tool import *
 from config import *
+import cv2
 
 
 def extract_data_from(path, label):
-	jpg = raw_to_jpg(path)
+	jpg_camera = path+".JPG"
+	# jpg = raw_to_jpg(path)
+	jpg = cv2.imread(jpg_camera)
 	cnts, thresh = detect_bright_spots(jpg)
 	
 	contours = circle_filter(cnts)
 
 	contour_indices = pair_eyes(contours)
 	
-	show_thresh(thresh)
-	show_contours(contours, jpg)
+	# show_thresh(thresh)
+	# show_contours(contours, jpg)
 	
 	# print('{} ANIMAL(S) FOUND'.format(len(contour_indices)))
 	
@@ -39,10 +42,10 @@ def extract_data_from(path, label):
 		j_output_list = []
 		r_output_list = []
 		for i in range(len(j_colours_list)):
-			j_output = [path, label] + j_colours_list[i]
+			j_output = [path[-8:], label] + j_colours_list[i]
 			j_output_list.append(j_output)
 		for i in range(len(r_colours_list)):
-			r_output = [path, label] + r_colours_list[i]
+			r_output = [path[-8:], label] + r_colours_list[i]
 			r_output_list.append(r_output)
 			# print(output_list)
 		return r_output_list, j_output_list

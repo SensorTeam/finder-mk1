@@ -4,3 +4,7 @@ images/
 .DS_STORE
 *.pyc
 __pycache__/
+Cow_eyes_field_test/
+demodata/
+demodata_classifier/
+demodata_classifier.zip

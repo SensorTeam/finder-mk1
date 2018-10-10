@@ -4,40 +4,52 @@
 import argparse
 import csv
 from main import *
+import os
 
-# take path as argument (w/o file extension)
-# take label as argument
-ap = argparse.ArgumentParser()
-ap.add_argument("-i", "--image", help = "path to the normal image file")
-ap.add_argument("-l", "--label", help = "path to the normal image file")
-args = vars(ap.parse_args())
+# # take path as argument (w/o file extension)
+# # take label as argument
+# ap = argparse.ArgumentParser()
+# ap.add_argument("-i", "--image", help = "path to the normal image file")
+# ap.add_argument("-l", "--label", help = "path to the normal image file")
+# args = vars(ap.parse_args())
 
-# load the image
-path = args["image"][:-4]
-label = args["label"]
+# Loop over every image in the folder
+directory_in_str = "C:\\Users\\Dan\\Documents\\GitHub\\finder-mk1\\demodata\\possum\\"
+directory = os.fsencode(directory_in_str)
 
-r_results, j_results = extract_data_from(path, label)
+for file in os.listdir(directory):
+	filename = os.fsdecode(file)
+	path = filename[:-4]
+	label = 4
+	print(path)
 
-f = open("sheep_data_raw.csv", 'a')
-writer = csv.writer(f)
-for entry in r_results:
-	writer.writerow(entry)
-f.close()
+# # load the image
+# path = args["image"][:-4]
+# label = args["label"]
 
-f2 = open("sheep_data_jpg.csv", 'a')
-writer = csv.writer(f2)
-for entry in j_results:
-	writer.writerow(entry)
-f2.close()
+	r_results, j_results = extract_data_from(directory_in_str + path, label)
+	print(r_results, j_results)
 
-f1 = open("txt.csv", 'a')
-writer = csv.writer(f1)
-for entry in r_results:
-	writer.writerow([len(r_results), path])
-f1.close()
+	f = open("possum_demo_raw.csv", 'a')
+	writer = csv.writer(f)
+	for entry in r_results:
+		writer.writerow(entry)
+	f.close()
 
-f3 = open("txt2.csv", 'a')
-writer = csv.writer(f3)
-for entry in j_results:
-	writer.writerow([len(j_results), path])
-f3.close()
+	f2 = open("possum_demo_jpg.csv", 'a')
+	writer = csv.writer(f2)
+	for entry in j_results:
+		writer.writerow(entry)
+	f2.close()
+
+# f1 = open("txt.csv", 'a')
+# writer = csv.writer(f1)
+# for entry in r_results:
+# 	writer.writerow([len(r_results), path])
+# f1.close()
+
+# f3 = open("txt2.csv", 'a')
+# writer = csv.writer(f3)
+# for entry in j_results:
+# 	writer.writerow([len(j_results), path])
+# f3.close()
