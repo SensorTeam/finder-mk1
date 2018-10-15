@@ -1,6 +1,6 @@
 from imutils import contours
 from skimage import measure
-from diagnostic_tool import *
+from .diagnostic_tool import *
 import numpy as np
 import imutils
 import cv2
@@ -18,12 +18,12 @@ def detect_bright_spots(image):
 	# threshold the image to reveal light regions in the
 	# blurred image
 	thresh = cv2.threshold(blurred, MIN_THRESHOLD, MAX_THRESHOLD, cv2.THRESH_BINARY)[1]
-	show_thresh(thresh)
+
 	# perform a series of erosions and dilations to remove
 	# any small blobs of noise from the thresholded image
 	thresh = cv2.erode(thresh, None, iterations=2)
 	thresh = cv2.dilate(thresh, None, iterations=4)
-
+	show_thresh(thresh)
 	# perform a connected component analysis on the thresholded
 	# image, then initialize a mask to store only the "large"
 	# components
@@ -44,6 +44,7 @@ def detect_bright_spots(image):
 
 		# if the number of pixels in the component is sufficiently
 		# large, then add it to our mask of "large blobs"
+		print(numPixels)
 		if MIN_NUM_PIXELS < numPixels < MAX_NUM_PIXELS:
 			mask = cv2.add(mask, labelMask)
 
@@ -52,7 +53,7 @@ def detect_bright_spots(image):
 	cnts = cv2.findContours(mask.copy(), cv2.RETR_EXTERNAL,
 		cv2.CHAIN_APPROX_SIMPLE)
 	cnts = cnts[0] if imutils.is_cv2() else cnts[1]
-
+	print(cnts)
 	# put through dark surround test
 	final_cnts = []
 	if (len(cnts) == 0):
@@ -62,6 +63,7 @@ def detect_bright_spots(image):
 		for cnt in cnts:
 			if (dark_surround(cnt, gray)):
 				final_cnts.append(cnt)
+	print(final_cnts)
 	return final_cnts, thresh
 
 
@@ -81,7 +83,7 @@ def dark_surround(contours, gray):
 	cv2.drawContours(simg, contours, 0, color=255, thickness=50)
 	# Add the contour in grey
 	cv2.drawContours(simg, contours, 0, color=100, thickness=-1)
-	cv2.imwrite("simg.jpg", simg)
+	# cv2.imwrite("simg.jpg", simg)
 	# cv2.imshow("simg",simg)
 	# cv2.waitKey(0)
 

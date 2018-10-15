@@ -18,12 +18,14 @@ def show_contours(cnts, image):
 	image = cv2.resize(image, (954, 634))
 	cv2.imshow("Image", image)
 	cv2.waitKey(0)
+	cv2.destroyAllWindows()
 
 def show_thresh(thresh):
 	# show the output image
 	thresh = cv2.resize(thresh, (954, 634))
 	cv2.imshow("Thresh", thresh)
 	cv2.waitKey(0)
+	cv2.destroyAllWindows()
 
 def circularity(contours):
 	# find contours of correct area
@@ -58,3 +60,4 @@ def show_pairs(cnts, image, contour_indices):
 	image = cv2.resize(image, (954, 634))
 	cv2.imshow("Image", image)
 	cv2.waitKey(0)
+	cv2.destroyAllWindows()

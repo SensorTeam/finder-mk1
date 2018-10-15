@@ -1,31 +1,32 @@
 
-from raw_to_jpg import *
-from detect_bright_spots import *
-from circle_filter import *
-from pair_eyes import *
-from contours_to_pixels import *
-from get_raw_colour import *
-from get_jpg_colour import *
-from diagnostic_tool import *
+from .raw_to_jpg import *
+from .detect_bright_spots import *
+from .circle_filter import *
+from .pair_eyes import *
+from .contours_to_pixels import *
+from .get_raw_colour import *
+from .get_jpg_colour import *
+from .diagnostic_tool import *
 from config import *
 import os
-
+import cv2
 
 def extract_data_from(path, label):
-	jpg = raw_to_jpg(path)
+	jpg_camera = path + ".JPG"
+	jpg = cv2.imread(jpg_camera)
 	cnts, thresh = detect_bright_spots(jpg)
 	
-	#show_thresh(thresh)
+	show_thresh(thresh)
 
 	contours = circle_filter(cnts)
 
-	#show_contours(contours, jpg)
+	show_contours(contours, jpg)
 
 	contour_indices = pair_eyes(contours)
 
 	if contour_indices == None:
 		print("COULD NOT DETERMINE PAIRS", "\n")
-
+	
 	else:
 		show_pairs(contours, jpg, contour_indices)
 		
@@ -48,23 +49,23 @@ def extract_data_from(path, label):
 			for i in range(len(colours_list)):
 				output = [path, label] + colours_list[i]
 				output_list.append(output)
-				print(output_list, "\n")
+				# print(output_list, "\n")
 			return output_list
 
 		else:
 			return []
 
-# Loop over every image in the folder
-directory_in_str = "C:\\Users\\Dan\\Documents\\GitHub\\finder-mk1\\Cow_eyes_field_test\\"
-directory = os.fsencode(directory_in_str)
+# # Loop over every image in the folder
+# directory_in_str = "C:\\Users\\Dan\\Documents\\GitHub\\finder-mk1\\Cow_eyes_field_test\\"
+# directory = os.fsencode(directory_in_str)
 
-for file in os.listdir(directory):
-	filename = os.fsdecode(file)
-	if filename.endswith(".JPG"):
-		path = filename[:-4]
-		label = None
-		print(path)
-		extract_data_from("Cow_eyes_field_test\\" + path, label)
+# for file in os.listdir(directory):
+# 	filename = os.fsdecode(file)
+# 	if filename.endswith(".JPG"):
+# 		path = filename[:-4]
+# 		label = None
+# 		print(path)
+# 		extract_data_from("Cow_eyes_field_test\\" + path, label)
 
 # Run main on one image
 # path = "IMG_6526"

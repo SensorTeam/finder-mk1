@@ -70,8 +70,7 @@ def pair_eyes(contours):
 		if checklist[-1] == 0:
 			contour_indices.append( (len(centres)-1, None) )
 			checklist[-1] += 1
-	# constuct new list to check doubling up of pairing
-	print(contour_indices)
+	# constuct new list to check doubling up of pairing 
 	for item in checklist:
 		if item > 1:
 			return None
